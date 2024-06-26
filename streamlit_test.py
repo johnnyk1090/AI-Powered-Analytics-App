@@ -41,6 +41,27 @@ login(token=hf_token, add_to_git_credential=True)
 
 # ------------------------    CODING SECTION  ----------------------------
 
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_background(jpg_file):
+    bin_str = get_base64_of_bin_file(jpg_file)
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("data:image/jpeg;base64,%s");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+    </style>
+    ''' % bin_str
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+set_background('images/36ff87fa-f66f-4794-a0c7-f9e6ad826917.jpeg')
 
 # Function to reset chat
 def reset_chat():
@@ -202,12 +223,26 @@ with st.sidebar:
         st.info("Please upload a file.")            
         
 # ------------------------    CSS SECTION  ----------------------------        
+
+# CSS to make the header white and bold
+header_style = '''
+<style>
+.header {
+    color: white;
+    font-weight: bold;
+}
+</style>
+'''
+
+# Embed the CSS in the Streamlit app
+st.markdown(header_style, unsafe_allow_html=True)
                     
 # Main interface
 col1, col2 = st.columns([6, 1])
 
 with col1:
-    st.header("AI Document/Data Analyst")
+    # st.header("AI Document/Data Analyst")
+    st.markdown('<h2 class="header">AI Document/Data \n\n\nAssistant</h2>', unsafe_allow_html=True)    
 
 with col2:
     st.button("Clear ↺", on_click=reset_chat)
