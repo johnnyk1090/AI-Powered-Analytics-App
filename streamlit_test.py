@@ -51,20 +51,20 @@ def reset_chat():
 # ------------------------    PDF SECTION  ----------------------------
     
 # display pdf files     
-def display_pdf(file):
-    # Opening file from file path
+# def display_pdf(file):
+#     # Opening file from file path
 
-    st.markdown("### PDF Preview")
-    base64_pdf = base64.b64encode(file.read()).decode("utf-8")
+#     st.markdown("### PDF Preview")
+#     base64_pdf = base64.b64encode(file.read()).decode("utf-8")
 
-    # Embedding PDF in HTML
-    pdf_display = f"""<iframe src="data:application/pdf;base64,{base64_pdf}" width="400" height="100%" type="application/pdf"
-                        style="height:100vh; width:100%"
-                    >
-                    </iframe>"""
+#     # Embedding PDF in HTML
+#     pdf_display = f"""<iframe src="data:application/pdf;base64,{base64_pdf}" width="400" height="100%" type="application/pdf"
+#                         style="height:100vh; width:100%"
+#                     >
+#                     </iframe>"""
 
-    # Displaying File
-    st.markdown(pdf_display, unsafe_allow_html=True)
+#     # Displaying File
+#     st.markdown(pdf_display, unsafe_allow_html=True)
     
 def perform_pdf():     
     # Hugging Face login
@@ -187,7 +187,8 @@ with st.sidebar:
                 st.write(f"File format provided : {suffix}")
 
                 if suffix == ".pdf":
-                    display_pdf(file)                    
+                    # display_pdf(file)                    
+                    pdf_viewer(file, width="400", height="100%")
                     # Inform the user that the file is processed and Display the PDF uploaded
                     st.success("Ready to Rumble!")    
                     perform_pdf()
