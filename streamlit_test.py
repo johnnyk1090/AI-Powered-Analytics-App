@@ -81,7 +81,7 @@ def perform_pdf():
                             
         st.write("Loading the embedding model and the document in vector store...\nThis might take a while...")
         model_name = "thenlper/gte-base"
-        model_kwargs = {'device': 'cuda'}
+        model_kwargs = {'device': 'cpu'}
         encode_kwargs = {'normalize_embeddings': True}
         hf = HuggingFaceEmbeddings(
             model_name=model_name,

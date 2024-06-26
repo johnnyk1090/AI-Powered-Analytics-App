@@ -14,5 +14,3 @@ streamlit-pdf-viewer==0.0.14
 chromadb==0.4.0
 PyMuPDF==1.24.5
 PyMuPDFb==1.24.3
-cuda-python==12.5.0
-nvidia-ml-py==12.535.133
