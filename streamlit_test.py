@@ -3,6 +3,9 @@ import gc
 import tempfile
 import uuid
 
+import sys
+sys.modules['sqlite3'] = __import__('pysqlite3')
+
 import pandas as pd
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
