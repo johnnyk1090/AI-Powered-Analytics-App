@@ -56,15 +56,15 @@ def perform_pdf():
     login(token=hf_token, add_to_git_credential=True)    
               
     if file_key not in st.session_state.get('file_cache', {}):     
-        try:                        
-            loader = PyMuPDFLoader(
-                file_path
-            )
-            docs = loader.load()
-            st.success("Ready to Rumble!")
-        except:    
-            st.error('Could not find the file you uploaded, please check again...')
-            st.stop()                                        
+        # try:                        
+        loader = PyMuPDFLoader(
+            file_path
+        )
+        docs = loader.load()
+        st.success("Ready to Rumble!")
+        # except:    
+        #     st.error('Could not find the file you uploaded, please check again...')
+        #     st.stop()                                        
         
         # define the llm model                                        
         llm = ChatOllama(model='llama3', temperature=0)
