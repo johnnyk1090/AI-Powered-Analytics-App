@@ -10,4 +10,5 @@ langchainhub==0.1.17
 pandas==1.5.3
 pandasai==2.2.7
 streamlit==1.35.0
+streamlit-pdf-viewer==0.0.14
 chromadb==0.4.0

@@ -5,10 +5,15 @@ import uuid
 import base64
 
 import pandas as pd
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_colwidth', None)
 
 from pathlib import Path
 
 from pandasai import SmartDataframe
+
+from streamlit_pdf_viewer import pdf_viewer
 
 from langchain_core.runnables import RunnablePassthrough
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -23,8 +28,6 @@ from langchain_chroma import Chroma
 
 from huggingface_hub import login
 import streamlit as st
-
-host = 'http://container_2:8000'
 
 # Session state initialization
 if "id" not in st.session_state:
@@ -184,7 +187,7 @@ with st.sidebar:
                 st.write(f"File format provided : {suffix}")
 
                 if suffix == ".pdf":
-                    display_pdf(file)
+                    display_pdf(file)                    
                     # Inform the user that the file is processed and Display the PDF uploaded
                     st.success("Ready to Rumble!")    
                     perform_pdf()
