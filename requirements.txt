@@ -3,7 +3,6 @@ langchain==0.1.20
 langchain-chroma==0.1.1
 langchain-community==0.0.38
 langchain-core==0.1.52
-langchain-experimental==0.0.59
 langchain-huggingface==0.0.3
 langchain-openai==0.1.7
 langchain-text-splitters==0.0.2
