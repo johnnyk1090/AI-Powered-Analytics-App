@@ -240,8 +240,7 @@ st.markdown(header_style, unsafe_allow_html=True)
 # Main interface
 col1, col2 = st.columns([6, 1])
 
-with col1:
-    # st.header("AI Document/Data Analyst")
+with col1:    
     st.markdown('<h2 class="header">AI Document/Data \n\n\nAssistant</h2>', unsafe_allow_html=True)    
 
 with col2:
@@ -254,7 +253,9 @@ if "messages" not in st.session_state:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        lines = str(message["content"]).splitlines()
+        for line in lines:
+            st.markdown(f'<span style="color:white;">{line}</span>', unsafe_allow_html=True)
 
 # Accept user input
 if prompt := st.chat_input("Ready for document/data analysis?"):    
@@ -262,7 +263,8 @@ if prompt := st.chat_input("Ready for document/data analysis?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     # Display user message in chat message container
     with st.chat_message("user"):
-        st.markdown(prompt)
+        # st.markdown(prompt)
+        st.markdown(f'<span style="color:white;">{prompt}</span>', unsafe_allow_html=True)        
 
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
@@ -274,12 +276,14 @@ if prompt := st.chat_input("Ready for document/data analysis?"):
         if suffix == ".pdf":
             streaming_response = perform_pdf().invoke(prompt)    
             for chunk in streaming_response:
-                full_response += chunk
-            message_placeholder_pdf.markdown(full_response)
+                full_response += chunk            
+            message_placeholder_pdf.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)                
+                
         else:
             streaming_response = perform_csv().chat(prompt) 
-            full_response = streaming_response           
-            message_placeholder_csv.markdown(full_response)                    
+            full_response = streaming_response                                                                   
+            message_placeholder_csv.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)            
+            
 
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": full_response})
