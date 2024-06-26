@@ -2,9 +2,7 @@ import os
 import gc
 import tempfile
 import uuid
-
-import sys
-sys.modules['sqlite3'] = __import__('pysqlite3')
+import base64
 
 import pandas as pd
 pd.set_option('display.max_rows', None)
@@ -14,8 +12,6 @@ pd.set_option('display.max_colwidth', None)
 from pathlib import Path
 
 from pandasai import SmartDataframe
-
-from streamlit_pdf_viewer import pdf_viewer
 
 from langchain_core.runnables import RunnablePassthrough
 from langchain_community.document_loaders import PyMuPDFLoader
@@ -55,6 +51,22 @@ def reset_chat():
     
     
 # ------------------------    PDF SECTION  ----------------------------
+
+# display pdf files     
+def display_pdf(file):
+    # Opening file from file path
+
+    st.markdown("### PDF Preview")
+    base64_pdf = base64.b64encode(file.read()).decode("utf-8")
+
+    # Embedding PDF in HTML
+    pdf_display = f"""<iframe src="data:application/pdf;base64,{base64_pdf}" width="400" height="100%" type="application/pdf"
+                        style="height:100vh; width:100%"
+                    >
+                    </iframe>"""
+
+    # Displaying File
+    st.markdown(pdf_display, unsafe_allow_html=True)
     
 def perform_pdf():                 
     if file_key not in st.session_state.get('file_cache', {}):             
@@ -176,7 +188,7 @@ with st.sidebar:
                 st.write(f"File format provided : {suffix}")
 
                 if suffix == ".pdf":                                        
-                    pdf_viewer(file_path, height=1000)                                            
+                    display_pdf(file)                                            
                     perform_pdf()
                 elif suffix == ".csv":
                     display_csv(file)                                                    
