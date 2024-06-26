@@ -14,3 +14,6 @@ streamlit-pdf-viewer==0.0.14
 chromadb==0.4.0
 PyMuPDF==1.24.5
 PyMuPDFb==1.24.3
+torch==2.3.1+cu121
+torchaudio==2.3.1+cu121
+torchvision==0.18.1+cu121

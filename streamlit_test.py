@@ -54,16 +54,16 @@ def perform_pdf():
     hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
     login(token=hf_token, add_to_git_credential=True)    
               
-    if file_key not in st.session_state.get('file_cache', {}):     
-        # try:                        
-        loader = PyMuPDFLoader(
-            file_path
-        )
-        docs = loader.load()
-        st.success("Ready to Rumble!")
-        # except:    
-        #     st.error('Could not find the file you uploaded, please check again...')
-        #     st.stop()                                        
+    if file_key not in st.session_state.get('file_cache', {}):             
+        try:                        
+            loader = PyMuPDFLoader(
+                file_path
+            )
+            docs = loader.load()
+            st.success("Ready to Rumble!")
+        except:    
+            st.error('Could not find the file you uploaded, please check again...')
+            st.stop()                                        
         
         # define the llm model                                        
         llm = ChatOllama(model='llama3', temperature=0)
@@ -138,7 +138,8 @@ def perform_csv():
         # define the llm model                                        
         llm = ChatOllama(model='llama3', temperature=0)
         # create the Smart DataFrame
-        sdf = SmartDataframe(file_path, config={"llm": llm})        
+        sdf = SmartDataframe(file_path, config={"llm": llm})       
+        st.success("Ready for Data Analysis!") 
                                                            
         st.session_state.file_cache[file_key] = sdf
 
@@ -171,13 +172,10 @@ with st.sidebar:
                 st.write(f"File format provided : {suffix}")
 
                 if suffix == ".pdf":                                        
-                    pdf_viewer(file_path, height=1000)
-                    # Inform the user that the file is processed and Display the PDF uploaded                        
+                    pdf_viewer(file_path, height=1000)                                            
                     perform_pdf()
                 elif suffix == ".csv":
-                    display_csv(file)
-                    # Inform the user that the file is processed and Display the CSV uploaded
-                    st.success("Ready for data analysis!")                                                    
+                    display_csv(file)                                                    
                     perform_csv()
                 else: 
                     st.write("Provide only .pdf or .csv files!") 
