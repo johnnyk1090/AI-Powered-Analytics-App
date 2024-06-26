@@ -36,6 +36,10 @@ if "id" not in st.session_state:
 session_id = st.session_state.id
 client = None
 
+# Hugging Face login
+hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
+login(token=hf_token, add_to_git_credential=False)    
+
 
 # ------------------------    CODING SECTION  ----------------------------
 
@@ -49,11 +53,7 @@ def reset_chat():
     
 # ------------------------    PDF SECTION  ----------------------------
     
-def perform_pdf():     
-    # Hugging Face login
-    hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
-    login(token=hf_token, add_to_git_credential=True)    
-              
+def perform_pdf():                 
     if file_key not in st.session_state.get('file_cache', {}):             
         try:                        
             loader = PyMuPDFLoader(
@@ -86,7 +86,7 @@ def perform_pdf():
         hf = HuggingFaceEmbeddings(
             model_name=model_name,
             model_kwargs=model_kwargs,
-            encode_kwargs=encode_kwargs
+            encode_kwargs=encode_kwargs            
         )
         st.write("Model loaded!")
         
@@ -135,7 +135,8 @@ def display_csv(file):
 def perform_csv():                
     if file_key not in st.session_state.get('file_cache', {}):                                     
         
-        # define the llm model                                        
+        # define the llm model
+                                                
         llm = ChatOllama(model='llama3', temperature=0)
         # create the Smart DataFrame
         sdf = SmartDataframe(file_path, config={"llm": llm})       
