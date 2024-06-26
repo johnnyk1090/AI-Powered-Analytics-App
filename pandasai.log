@@ -2948,3 +2948,134 @@ result = {'type': 'plot', 'value': 'C:/Users/kon17/AI-Powered-Analytics-App/expo
 IndexError: list index out of range
 
 2024-06-26 17:44:04 [ERROR] Pipeline failed on step 6: list index out of range
+2024-06-27 00:29:02 [INFO] Question: what is te code of Azerbaijan
+2024-06-27 00:29:02 [INFO] Running PandasAI with langchain_ollama-chat LLM...
+2024-06-27 00:29:02 [INFO] Prompt ID: d43f528d-4316-49ce-97cd-b31bd5d0bee5
+2024-06-27 00:29:02 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-06-27 00:29:02 [INFO] Executing Step 0: ValidatePipelineInput
+2024-06-27 00:29:02 [INFO] Executing Step 1: CacheLookup
+2024-06-27 00:29:02 [INFO] Executing Step 2: PromptGeneration
+2024-06-27 00:29:02 [INFO] Using prompt: <dataframe>
+dfs[0]:3652x4
+Entity,Code,Year,"7.a.1 - International financial flows to developing countries in support of clean energy research and development and renewable energy production, including in hybrid systems (millions of constant 2020 United States dollars) - EG_IFF_RANDN - All renewables"
+Hong Kong,STP,2004,991380000.0
+Indonesia,,2017,825800000.0
+Somalia,KGZ,2013,1180000.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is te code of Azerbaijan
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-06-27 00:29:02 [INFO] Executing Step 3: CodeGenerator
+2024-06-27 00:29:54 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:3652x4
+Entity,Code,Year,"7.a.1 - International financial flows to developing countries in support of clean energy research and development and renewable energy production, including in hybrid systems (millions of constant 2020 United States dollars) - EG_IFF_RANDN - All renewables"
+Hong Kong,STP,2004,991380000.0
+Indonesia,,2017,825800000.0
+Somalia,KGZ,2013,1180000.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ what is te code of Azerbaijan
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-06-27 00:29:54 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataframes from list
+dfs = [pd.DataFrame({
+    "Entity": ["Hong Kong", "Indonesia", "Somalia"],
+    "Code": ["STP", "", "KGZ"],
+    "Year": [2004, 2017, 2013],
+    "Value": [991380000.0, 825800000.0, 1180000.0]
+})]
+
+# Find the code of Azerbaijan
+azerbaijan_code = None
+
+for df in dfs:
+    if (df["Entity"] == "Azerbaijan").any():
+        azerbaijan_code = df.loc[(df["Entity"] == "Azerbaijan") & (df["Code"].notna())]["Code"].values[0]
+        break
+
+# Declare result var: 
+result = {
+    "type": "string",
+    "value": f"The code of Azerbaijan is {azerbaijan_code}." if azerbaijan_code else "Azerbaijan not found."
+}
+
+print(result)
+            ```
+            
+2024-06-27 00:29:54 [INFO] Executing Step 4: CachePopulation
+2024-06-27 00:29:54 [INFO] Executing Step 5: CodeCleaning
+2024-06-27 00:29:54 [INFO] 
+Code running:
+```
+azerbaijan_code = None
+for df in dfs:
+    if (df['Entity'] == 'Azerbaijan').any():
+        azerbaijan_code = df.loc[(df['Entity'] == 'Azerbaijan') & df['Code'].notna()]['Code'].values[0]
+        break
+result = {'type': 'string', 'value': f'The code of Azerbaijan is {azerbaijan_code}.' if azerbaijan_code else 'Azerbaijan not found.'}
+print(result)
+        ```
+2024-06-27 00:29:54 [INFO] Executing Step 6: CodeExecution
+2024-06-27 00:29:54 [INFO] Executing Step 7: ResultValidation
+2024-06-27 00:29:54 [INFO] Answer: {'type': 'string', 'value': 'The code of Azerbaijan is AZE.'}
+2024-06-27 00:29:54 [INFO] Executing Step 8: ResultParsing
