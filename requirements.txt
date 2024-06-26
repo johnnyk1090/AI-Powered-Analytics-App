@@ -12,3 +12,5 @@ pandasai==2.2.7
 streamlit==1.35.0
 streamlit-pdf-viewer==0.0.14
 chromadb==0.4.0
+PyMuPDF==1.24.5
+PyMuPDFb==1.24.3
