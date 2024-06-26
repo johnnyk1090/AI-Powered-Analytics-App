@@ -34,10 +34,10 @@ if "id" not in st.session_state:
     st.session_state.file_cache = {}    
 
 session_id = st.session_state.id
-client = None
+# client = None
 
 # Hugging Face login
-hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
+hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
 login(token=hf_token, add_to_git_credential=False)    
 
 
@@ -81,12 +81,12 @@ def perform_pdf():
                             
         st.write("Loading the embedding model and the document in vector store...\nThis might take a while...")
         model_name = "thenlper/gte-base"
-        model_kwargs = {'device': 'cpu'}
+        model_kwargs = {'device': 'cpu', 'trust_remote_code': True}
         encode_kwargs = {'normalize_embeddings': True}
         hf = HuggingFaceEmbeddings(
             model_name=model_name,
             model_kwargs=model_kwargs,
-            encode_kwargs=encode_kwargs            
+            encode_kwargs=encode_kwargs,                      
         )
         st.write("Model loaded!")
         
