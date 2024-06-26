@@ -188,7 +188,7 @@ with st.sidebar:
 
                 if suffix == ".pdf":
                     # display_pdf(file)                    
-                    pdf_viewer(file_path, width=400, height=100)
+                    pdf_viewer(file_path, width=400, height=1000)
                     # Inform the user that the file is processed and Display the PDF uploaded
                     st.success("Ready to Rumble!")    
                     perform_pdf()
