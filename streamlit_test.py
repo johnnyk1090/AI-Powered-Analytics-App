@@ -24,6 +24,8 @@ from langchain_chroma import Chroma
 from huggingface_hub import login
 import streamlit as st
 
+host = 'http://container_2:8000'
+
 # Session state initialization
 if "id" not in st.session_state:
     st.session_state.id = uuid.uuid4()
