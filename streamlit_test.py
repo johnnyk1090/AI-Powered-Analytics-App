@@ -50,22 +50,6 @@ def reset_chat():
     
 # ------------------------    PDF SECTION  ----------------------------
     
-# display pdf files     
-# def display_pdf(file):
-#     # Opening file from file path
-
-#     st.markdown("### PDF Preview")
-#     base64_pdf = base64.b64encode(file.read()).decode("utf-8")
-
-#     # Embedding PDF in HTML
-#     pdf_display = f"""<iframe src="data:application/pdf;base64,{base64_pdf}" width="400" height="100%" type="application/pdf"
-#                         style="height:100vh; width:100%"
-#                     >
-#                     </iframe>"""
-
-#     # Displaying File
-#     st.markdown(pdf_display, unsafe_allow_html=True)
-    
 def perform_pdf():     
     # Hugging Face login
     hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
@@ -77,6 +61,7 @@ def perform_pdf():
                 file_path
             )
             docs = loader.load()
+            st.success("Ready to Rumble!")
         except:    
             st.error('Could not find the file you uploaded, please check again...')
             st.stop()                                        
@@ -186,11 +171,9 @@ with st.sidebar:
                 suffix = Path(file.name).suffix                
                 st.write(f"File format provided : {suffix}")
 
-                if suffix == ".pdf":
-                    # display_pdf(file)                    
+                if suffix == ".pdf":                                        
                     pdf_viewer(file_path, height=1000)
-                    # Inform the user that the file is processed and Display the PDF uploaded
-                    st.success("Ready to Rumble!")    
+                    # Inform the user that the file is processed and Display the PDF uploaded                        
                     perform_pdf()
                 elif suffix == ".csv":
                     display_csv(file)
