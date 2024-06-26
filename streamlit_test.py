@@ -39,6 +39,27 @@ session_id = st.session_state.id
 hf_token = os.getenv("HF_TOKEN", "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")  # Use environment variable for token
 login(token=hf_token, add_to_git_credential=True)    
 
+# Custom CSS to set black background
+# st.markdown("""
+#     <style>
+#         .main {
+#             background-color: black;
+#             color: white;
+#         }
+#         .stButton>button {
+#             background-color: white;
+#             color: black;
+#         }
+#         .stSidebar, .stSidebar > div {
+#             background-color: black;
+#         }
+#         .stTextInput>div>div>input {
+#             background-color: black;
+#             color: white;
+#         }
+#     </style>
+# """, unsafe_allow_html=True)
+
 
 # ------------------------    CODING SECTION  ----------------------------
 
