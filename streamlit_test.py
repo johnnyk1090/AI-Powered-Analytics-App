@@ -3,6 +3,7 @@ import gc
 import tempfile
 import uuid
 import base64
+import io
 
 import pandas as pd
 pd.set_option('display.max_rows', None)
@@ -94,7 +95,7 @@ def perform_pdf():
                             
         st.write("Loading the embedding model and the document in vector store...\nThis might take a while...")
         model_name = "thenlper/gte-base"
-        model_kwargs = {'device': 'cpu', 'trust_remote_code': True}
+        model_kwargs = {'device': 'cuda:0', 'trust_remote_code': True}
         encode_kwargs = {'normalize_embeddings': True}
         hf = HuggingFaceEmbeddings(
             model_name=model_name,
@@ -194,7 +195,7 @@ with st.sidebar:
                 else: 
                     st.write("Provide only .pdf or .csv files!") 
                     
-        except Exception as e:
+        except Exception as e:        
             st.error(f"An error occurred: {e}")
             st.stop()                                       
     else:
@@ -250,20 +251,20 @@ with col2:
 if "messages" not in st.session_state:
     reset_chat()    
 
-# Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        lines = str(message["content"]).splitlines()
-        for line in lines:
-            st.markdown(f'<span style="color:white;">{line}</span>', unsafe_allow_html=True)
-
+        if suffix == ".pdf":
+            content = '<br>'.join(message["content"].splitlines())
+            st.markdown(f'<span style="color:white;">{content}</span>', unsafe_allow_html=True)
+        else:            
+            st.markdown(message["content"])            
+            
 # Accept user input
 if prompt := st.chat_input("Ready for document/data analysis?"):    
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
     # Display user message in chat message container
-    with st.chat_message("user"):
-        # st.markdown(prompt)
+    with st.chat_message("user"):        
         st.markdown(f'<span style="color:white;">{prompt}</span>', unsafe_allow_html=True)        
 
     # Display assistant response in chat message container
@@ -276,14 +277,15 @@ if prompt := st.chat_input("Ready for document/data analysis?"):
         if suffix == ".pdf":
             streaming_response = perform_pdf().invoke(prompt)    
             for chunk in streaming_response:
-                full_response += chunk            
-            message_placeholder_pdf.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)                
-                
+                full_response += chunk                        
+            # Display the full response once it's completely received
+            full_response = '<br>'.join(full_response.splitlines())
+            message_placeholder_pdf.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)                                            
         else:
-            streaming_response = perform_csv().chat(prompt) 
-            full_response = streaming_response                                                                   
-            message_placeholder_csv.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)            
+            streaming_response = perform_csv().chat(prompt)             
+            full_response = streaming_response                          
+            message_placeholder_csv.markdown(f'<span style="color:white;">{full_response}</span>', unsafe_allow_html=True)                                
             
 
     # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+    st.session_state.messages.append({"role": "assistant", "content": full_response}) 
