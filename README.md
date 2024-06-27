@@ -4,10 +4,15 @@
 App video and image display
 &nbsp;
 
-![Image 1](https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_1.png)
-![Image 2](https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_2.png)
-![Image 3](https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_3.png)
-
+<p align="center">
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_1.png" alt="Image 1" width="600"/>
+</p>
+<p align="center">
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_2.png" alt="Image 2" width="600"/>
+</p>
+<p align="center">
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_3.png" alt="Image 3" width="600"/>
+</p>
 &nbsp;
 &nbsp;
 
