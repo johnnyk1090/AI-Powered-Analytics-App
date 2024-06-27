@@ -1,2 +1,7 @@
 App video and image display
-[![Watch the video]([https://youtu.be/vt5fpE0bzSY](https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/Meet_Your_New_AI%20Assistant.mp4))]
+
+<div>  
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_1.png" title="ai_assistant_1" alt="ai_assistant_1" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_2.png" title="ai_assistant_2"  alt="ai_assistant_2" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_3.png" title="ai_assistant_3" alt="ai_assistant_3" width="40" height="40"/>&nbsp;
+<div> 
