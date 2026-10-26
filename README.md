@@ -1,22 +1,23 @@
-# CODE AVAILABLE AFTER REQUEST 
+<img src="assets/banner.svg" width="100%" alt="AI Document & Data Assistant. Upload a PDF or CSV and ask it questions in plain language: indexing, retrieval and answers in one interface.">
 
+## The idea
 
-App video and image display
+An assistant for documents and data: upload a **PDF or CSV**, preview it, let the app load an embedding model and index the document into a vector store, and ask questions in plain language.
 
-Check out this video:
-&nbsp;
+**The code is available on request.**
 
-https://github.com/johnnyk1090/AI-Powered-Analytics-App/assets/49451695/accb6930-d156-4554-8b51-1eab300193b9
-
-&nbsp;
-&nbsp;
+## Screens
 
 <p align="center">
-  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_1.png" alt="Image 1" width="600"/>
+  <img src="ai_assistant_1.png" alt="Upload, preview and index a document" width="720">
 </p>
 <p align="center">
-  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_2.png" alt="Image 2" width="600"/>
+  <img src="ai_assistant_2.png" alt="Asking the assistant" width="720">
 </p>
 <p align="center">
-  <img src="https://github.com/johnnyk1090/AI-Powered-Analytics-App/blob/main/ai_assistant_3.png" alt="Image 3" width="600"/>
+  <img src="ai_assistant_3.png" alt="The assistant's answer" width="720">
 </p>
+
+<br>
+
+<p align="center"><sub>Part of the work of <a href="https://github.com/johnnyk1090">Giannis Konteas</a> · end-to-end data science</sub></p>
